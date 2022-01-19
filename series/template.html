@@ -8,10 +8,34 @@
     <title>{{series name}}</title>
 </head>
 <body>
-    <video />
+    <iframe 
+        src="https://www.youtube.com/embed/0D19x2kbwjU">
+    </iframe>
     <h1>{{series name}}</h1>
     <div>
         {{description}}
     </div>
+    <table id="ratingTable">
+        <tr>
+            <th>Kriterium</th>
+            <th>Bewertung</th>
+        </tr>
+        <tr>
+            <td>Ästhetik</td>
+            <td>{{our score out of 10}}</td>
+        </tr>
+        <tr>
+            <td>Geschichte</td>
+            <td>{{our score out of 10}}</td>
+        </tr>
+        <tr>
+            <td>Charaktere</td>
+            <td>{{our score out of 10}}</td>
+        </tr>
+        <tr>
+            <td>Gesamtbewertung</td>
+            <td>{{our score out of 10}}</td>
+        </tr>
+    </table>
 </body>
 </html>
