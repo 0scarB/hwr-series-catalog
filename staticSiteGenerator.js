@@ -16,8 +16,8 @@ function generateDir(keyValueMap, specializations, resolvedSpecializations, path
                 of resolvePath(keyValueMap, specializations, resolvedSpecializations, childPath)
             ) {
                 if (fs.statSync(templatePath).isDirectory()) {
-                    if (!fs.existsSync(templatePath)) {
-                        fs.mkdirSync(templatePath, {recursive: true});
+                    if (!fs.existsSync(resolvedPath)) {
+                        fs.mkdirSync(resolvedPath, {recursive: true});
                     }
                 } else {
                     generateFile(keyValueMap, templatePath, childResolvedSpecializations, resolvedPath);
