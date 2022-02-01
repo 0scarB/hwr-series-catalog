@@ -1,3 +1,24 @@
 body {
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    column-gap:  50px;
+}
+
+a {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+img {
+    min-height: 10px;
+    min-width: 50px;
+    max-height: 150px;
+    max-width: 500px;
+}
+
+#mandoPic {
+    max-height: 123px;
+    max-width: 400px;
 }
