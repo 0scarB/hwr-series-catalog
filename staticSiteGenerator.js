@@ -69,6 +69,7 @@ function* resolvePath(keyValueMap, specializations, resolvedSpecializations, tem
     const placeholders = findPlaceholders(pathWithTemplateSubstringsRemoved);
     if (placeholders.length === 0) {
         yield [templatePath, resolvedSpecializations, pathWithTemplateSubstringsRemoved];
+        return;
     }
     for (const result of resolvePathPlaceholders(
         keyValueMap,

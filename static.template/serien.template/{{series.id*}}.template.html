@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{series.id.name}}</title>
+    <link rel="stylesheet" href="../styles.css"/>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+    <main>
+        <iframe class="trailer" src="{{series.id.embeddedTrailerURL}}"></iframe>
+        <h1 class="title">{{series.id.name}}</h1>
+        <div class="description">
+            {{series.id.description}}
+        </div>
+        <table class="scores" id="ratingTable">
+            <tr>
+                <th>Kriterium</th>
+                <th>Bewertung</th>
+            </tr>
+            <tr>
+                <td>Ästhetik</td>
+                <td>{{series.id.score.aesthetics}}/{{series.score.max}}</td>
+            </tr>
+            <tr>
+                <td>Geschichte</td>
+                <td>{{series.id.score.plot}}/{{series.score.max}}</td>
+            </tr>
+            <tr>
+                <td>Charaktere</td>
+                <td>{{series.id.score.characters}}/{{series.score.max}}</td>
+            </tr>
+            <tr>
+                <td>Gesamtbewertung</td>
+                <td>{{series.id.score.total}}/{{series.score.maxTotal}}</td>
+            </tr>
+        </table>
+    </main>
+</body>
+</html>

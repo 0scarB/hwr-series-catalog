@@ -1,10 +1,11 @@
 FROM node:17-alpine
 
+WORKDIR /app
+
 COPY . .
 
-RUN npm install && \
-    node ./staticSiteGenerator.js
+RUN npm install
 
 EXPOSE 8080
 
-ENTRYPOINT node ./index.js
+ENTRYPOINT npm run build && npm run serve

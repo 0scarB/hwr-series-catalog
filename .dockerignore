@@ -1,0 +1,8 @@
+*
+!/static.template
+!data.json
+!generateData.js
+!index.js
+!package.json
+!package-lock.json
+!staticSiteGenerator.js

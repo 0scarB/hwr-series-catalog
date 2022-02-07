@@ -21,3 +21,36 @@ der Platz nicht ausreicht und der Inhalt wird dann vertikal "gewrappt".
 Die Seiten zu den einzelnen Serien werden mittels eines Grid-Layouts dargestellt. 
 Das Grid hat sechs Spalten. Das Layout ändert sich responsiv mittels Media-Queries 
 bei Seitenbreiten von 650 und 800 Pixel.
+
+## Docker
+
+### Produktion
+
+Das Docker-Produktions-Image und Contianer können durch die folgenden Kommandos 
+im Repo-Root-Ordner gebaut und ausgeführt werden:
+
+```bash
+docker build --no-cache . -t series_catalog
+docker run -p 8080:8080 --name series_catalog series_catalog
+```
+
+Alternativ, kann in eine Bash-Umgebung mit Node/npm Installation `npm run docker` 
+ausgeführt werden.
+
+Die Webseite sollte unter http://127.0.0.1:8080 abrufbar sein.
+
+### Development
+
+Das Docker-Development-Image und Contianer können durch die folgenden Kommandos
+im Repo-Root-Ordner gebaut und ausgeführt werden:
+
+```bash
+docker build --no-cache . -t series_catalog -f dev.Dockerfile
+docker run -v $(pwd)/:/app/ -p 8080:8080 --name series_catalog series_catalog
+```
+(`$(pwd)` ggf. durch den absoluten Pfad zum Repo-Root-Ordner ersetzen.)
+
+Alternativ, kann in eine Bash-Umgebung mit Node/npm Installation `npm run docker-dev`
+ausgeführt werden.
+
+Die Webseite sollte unter http://127.0.0.1:8080 abrufbar sein.
