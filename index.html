@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Serien Katalog</title>
+    <link rel="stylesheet" href="./styles.css"/>
+</head>
+<body>
+    <form id="searchbar">
+        <label for="search">Suchen: </label>
+        <input type="text" id="search">
+        <input type="submit">
+    </form>
+    <h1>Serien Katalog</h1>
+    <div>
+        <!--
+        template:
+        <a href="./serien/{{serien-name}}.html">
+            <img alt="{{preview image alt text}}" src="{{preview image}}" />
+            <h3>{{serien name}}</h3>
+            <p><span>Staffel </span><span>{{number of episodes}}</span></p>
+            <p><span>Folgen </span><span>{{number of episodes}}</span></p>
+            <p><span>Bewertung </span><span>{{our score out of 10}}</span></p>
+        </a>
+        -->
+        <a id="arcane" href="serien/arcane.html">
+            <img alt="{{preview image alt text}}" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.wikia.nocookie.net%2Fleagueoflegends%2Fimages%2F0%2F03%2FArcane_Series_Logo.jpg%2Frevision%2Flatest%3Fcb%3D20191016080418&f=1&nofb=1" />
+            <h3>Arcane</h3>
+            <ul>
+                <li><span>Staffel </span><span>1</span></li>
+                <li><span>Folgen </span><span>9</span></li>
+                <li><span>Bewertung </span><span>10/10</span></li>
+            </ul>
+        </a>
+        <a id="breakingBad" href="serien/breaking-bad.html">
+            <img alt="{{preview image alt text}}" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Breaking_Bad_logo.svg/280px-Breaking_Bad_logo.svg.png" />
+            <h3>Breaking Bad</h3>
+            <ul>
+                <li><span>Staffel </span><span>5</span></li>
+                <li><span>Folgen </span><span>62</span></li>
+                <li><span>Bewertung </span><span>9/10</span></li>
+            </ul>
+        </a>
+        <a id="hausDesGeldes" href="serien/haus-des-geldes.html">
+            <img alt="{{preview image alt text}}" src="https://633987.smushcdn.com/907311/wp-content/uploads/2019/07/13MH-1300x731.jpeg?lossy=1&strip=1&webp=1" />
+            <h3>Haus des Geldes</h3>
+            <ul>
+                <li><span>Staffel </span><span>3</span></li>
+                <li><span>Folgen </span><span>41</span></li>
+                <li><span>Bewertung </span><span>6/10</span></li>
+            </ul>
+        </a>
+        <a id="mandalorian" href="serien/mandalorian.html">
+            <img id="mandoPic" alt="{{preview image alt text}}" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/The_Mandalorian_black_background.svg/500px-The_Mandalorian_black_background.svg.png" />
+            <h3>The Mandalorian</h3>
+            <ul>
+                <li><span>Staffel </span><span>2</span></li>
+                <li><span>Folgen </span><span>16</span></li>
+                <li><span>Bewertung </span><span>9/10</span></li>
+            </ul>
+        </a>
+    </div>
+</body>
+</html>
