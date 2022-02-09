@@ -1,5 +1,5 @@
 module.exports = {
-    "series.id*.score.total": function (data, totalKey) {
+    "series.id~.score.total": function (data, totalKey) {
         const seriesKey = totalKey.slice(0, totalKey.indexOf(".score.total"));
 
         let total = 0;

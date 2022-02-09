@@ -26,7 +26,7 @@ bei Seitenbreiten von 650 und 800 Pixel.
 
 ### Produktion
 
-Das Docker-Produktions-Image und Contianer können durch die folgenden Kommandos 
+Das Docker-Produktions-Image und Container können durch die folgenden Kommandos 
 im Repo-Root-Ordner gebaut und ausgeführt werden:
 
 ```bash
@@ -41,7 +41,7 @@ Die Webseite sollte unter http://127.0.0.1:8080 abrufbar sein.
 
 ### Development
 
-Das Docker-Development-Image und Contianer können durch die folgenden Kommandos
+Das Docker-Development-Image und Container können durch die folgenden Kommandos
 im Repo-Root-Ordner gebaut und ausgeführt werden:
 
 ```bash

@@ -92,7 +92,7 @@ function* resolvePathPlaceholders(
     placeholders
 ) {
     const placeholder = placeholders.shift();
-    if (placeholder.value.indexOf("*") === -1) {
+    if (placeholder.value.indexOf("~") === -1) {
         const nextPath = replacePlaceholder(
             path_,
             placeholder,
@@ -112,8 +112,8 @@ function* resolvePathPlaceholders(
             }
         }
     } else {
-        const specializationTypeKey = placeholder.value.slice(0, placeholder.value.indexOf("*") + 1);
-        const keyEnd = placeholder.value.slice(placeholder.value.indexOf("*") + 1);
+        const specializationTypeKey = placeholder.value.slice(0, placeholder.value.indexOf("~") + 1);
+        const keyEnd = placeholder.value.slice(placeholder.value.indexOf("~") + 1);
         let specializationKeys;
         if (specializations.has(specializationTypeKey)) {
             specializationKeys = specializations.get(specializationTypeKey);
@@ -240,7 +240,7 @@ function addDataKeyValuesAndSpecializationsFromObject(
     for (const [keyContinuation, value] of Object.entries(obj)) {
         const key = `${keyStart}${keyContinuation}`;
 
-        if (keyContinuation.endsWith("*")) {
+        if (keyContinuation.endsWith("~")) {
             const specializationKeys = [];
             for (const [specializationName, specializationValue] of Object.entries(value)) {
                 const specializationKey = `${keyStart}${keyContinuation}="${specializationName}"`;
@@ -259,8 +259,8 @@ function addDataKeyValuesAndSpecializationsFromObject(
             }
 
             mapSetUnique(specializations, key, specializationKeys);
-        } else if (keyContinuation.indexOf("*") > -1) {
-            const specializationMarkerIndex = key.indexOf("*");
+        } else if (keyContinuation.indexOf("~") > -1) {
+            const specializationMarkerIndex = key.indexOf("~");
             const specializationKey = key.slice(0, specializationMarkerIndex + 1);
             const keyEnd = key.slice(specializationMarkerIndex + 1);
             if (specializations.has(specializationKey)) {
