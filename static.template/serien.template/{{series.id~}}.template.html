@@ -12,14 +12,14 @@
     <!-- External packages -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
-<body>
+<body onload="onLoadSeriesPage('{{series.id}}')">
     <main>
         <iframe class="trailer" src="{{series.id.embeddedTrailerURL}}"></iframe>
         <h1 class="title">{{series.id.name}}</h1>
         <div class="description">
             {{series.id.description}}
         </div>
-        <button class="mark-favorite-btn" id="mark-favorite-btn-{{series.id}}" onclick="markFavorite('{{series.id}}')">Favorit hinzufügen</button>
+        <button id="toggle-favorite-btn-{{series.id}}">Favorit ...</button>
         <table class="scores" id="ratingTable">
             <tr>
                 <th>Kriterium</th>
