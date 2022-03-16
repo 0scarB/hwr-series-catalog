@@ -67,6 +67,16 @@ app.get("/series", handleErrors((req, res) => {
     res.send(getter(req.query.limit));
 }));
 
+app.get("/comments", (_, res) => {
+    res.json(PublicStore.comments);
+    console.log(PublicStore.comments);
+})
+
+app.post("/comments", (req, _) => {
+    PublicStore.comments.push(req.json());
+    console.log(PublicStore.comments);
+})
+
 // ===========================================================================
 
 function handleErrors(decoratedFunc) {

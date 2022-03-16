@@ -10,7 +10,7 @@ const _seriesIdsFromData = new Set(_seriesIdsFromDataArr);
 
 const PublicStore = {
     comments: [
-        // {seriesId: "arcane", userId: "", content: ""}
+        // {commentId: 0, seriesId: "arcane", userId: "", content: ""}
     ]
 }
 

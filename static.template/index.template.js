@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 function onLoadHomePage() {
     Promise.all([
         handleRequestErrors(axios.get("/series"), {
@@ -19,6 +21,8 @@ function onLoadHomePage() {
 }
 
 function onLoadSeriesPage(seriesId) {
+    initializeComments(seriesId);
+
     handleRequestErrors(axios.put(`/visit/${seriesId}`), {
         stderr: (err) => `Failed to increment visits for series id "${seriesId}": ${err}`,
     });
@@ -74,6 +78,36 @@ function initializeFavoriteBtn(favorites, seriesId) {
     };
 
     btnEl.addEventListener("click", toggle);
+}
+
+function initializeComments(seriesId) {
+    const commentsEl = document.getElementById("comments");
+
+    // Do request to get comments
+    // response.data.filter(responseComment => responseComment.seriesId === seriesId);
+    const comments = [
+        {userId: 'Nutzer1', content: "toll"},
+        {userId: 'Nutzer1', content: "totally not a scam"},
+    ]
+    for (const comment of comments) {
+        const commentEl = document.createElement('div');
+        const userIdEl = document.createElement('div');
+        userIdEl.innerText = comment.userId;
+        const commentContentEl = document.createElement('div');
+        // commentContentEl.innerText = comment.content;
+        commentContentEl.innerHTML = `<strong>${comment.content}</strong>`
+
+        commentEl.appendChild(userIdEl);
+        commentEl.appendChild(commentContentEl);
+
+        commentsEl.appendChild(commentEl);
+    }
+
+    const handleNewComment = (el) => {
+        axios.post("/comment", {seriesId, content: el.target.value});
+    }
+
+    document.getElementById("new-comment").onsubmit = handleNewComment;
 }
 
 function handleRequestErrors(promise, options) {
