@@ -1,0 +1,39 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0')
+  meta(http-equiv='X-UA-Compatible' content='ie=edge')
+  title #{name}
+  link(rel='stylesheet' href='../styles.css')
+  link(rel='stylesheet' href='styles.css')
+  // External packages
+  script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js')
+  script(src='/index.js')
+body(onload='onLoadSeriesPage()')
+  main
+    iframe.trailer(src=`${embeddedTrailerURL}`)
+    h1.title #{name}
+    .description
+      | #{description}
+    button(id=`toggle-favorite-btn-${id}`) Favorit ...
+    table#ratingTable.scores
+      tr
+        th Kriterium
+        th Bewertung
+      tr
+        td &Auml;sthetik
+        td #{score.aesthetics}/10
+      tr
+        td Geschichte
+        td #{score.plot}/10
+      tr
+        td Charaktere
+        td #{score.characters}/10
+      tr
+        td Gesamtbewertung
+        td #{score.total}/#{score.maxTotal}
+    form(id='new-comment-form')
+      label(for='new-comment') Neue Kommentar hinterlassen
+      input(id='new-comment', type='textarea')
+      input(type='submit')
+    div(id='comments')

@@ -3,9 +3,7 @@ const fs = require("fs");
 const { NotFoundError, ConflictError, NotAcceptableError } = require("./errors");
 
 const _data = JSON.parse(fs.readFileSync("./data.json"));
-const _seriesIdsFromDataArr = Object.entries(_data.series["id~"]).map(
-    ([seriesId, _]) => seriesId
-);
+const _seriesIdsFromDataArr = Object.keys(_data.shows);
 const _seriesIdsFromData = new Set(_seriesIdsFromDataArr);
 
 const PublicStore = {

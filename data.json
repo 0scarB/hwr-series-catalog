@@ -1,50 +1,56 @@
 {
-  "series": {
-    "id~": {
+  "shows": {
       "arcane": {
-        "name": "Arcane",
-        "embeddedTrailerURL": "https://www.youtube.com/embed/0D19x2kbwjU",
-        "description": "Arcane spielt in einem geteilten Stadtstaat namens Piltover, der aus einem reichen und strahlenden Stadtteil sowie einem düsteren und verarmten Bezirk besteht. Diese in ganz Runeterra als „Stadt des Fortschritts“ bekannte Stadt ist die Heimat vieler der brillantesten Köpfe. In dem lebensfeindlichen Umfeld der Unterstadt wachsen die Waisenkinder Vi und Powder in der Obhut ihres Ziehvater Vander auf. Die beiden kleinkriminellen Schwestern machen einen Raubzug in dem wohlhabenden Bezirk und lösen damit eine Kette an Ereignissen aus, die nicht nur einen Keil zwischen die beiden Geschwister treibt, sondern auch die Zukunft von ganz Piltover gefährdet",
-        "score": {
-          "aesthetics": 10,
-          "plot": 9,
-          "characters": 10
-        }
+          "series": 1,
+          "episodes": 9,
+          "name": "Arcane",
+          "imageURL": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.wikia.nocookie.net%2Fleagueoflegends%2Fimages%2F0%2F03%2FArcane_Series_Logo.jpg%2Frevision%2Flatest%3Fcb%3D20191016080418&f=1&nofb=1",
+          "embeddedTrailerURL": "https://www.youtube.com/embed/0D19x2kbwjU",
+          "description": "Arcane spielt in einem geteilten Stadtstaat namens Piltover, der aus einem reichen und strahlenden Stadtteil sowie einem düsteren und verarmten Bezirk besteht. Diese in ganz Runeterra als „Stadt des Fortschritts“ bekannte Stadt ist die Heimat vieler der brillantesten Köpfe. In dem lebensfeindlichen Umfeld der Unterstadt wachsen die Waisenkinder Vi und Powder in der Obhut ihres Ziehvater Vander auf. Die beiden kleinkriminellen Schwestern machen einen Raubzug in dem wohlhabenden Bezirk und lösen damit eine Kette an Ereignissen aus, die nicht nur einen Keil zwischen die beiden Geschwister treibt, sondern auch die Zukunft von ganz Piltover gefährdet",
+          "score": {
+              "aesthetics": 10,
+              "plot": 9,
+              "characters": 10
+          }
       },
       "breaking-bad": {
-        "name": "Breaking Bad",
-        "embeddedTrailerURL": "https://www.youtube.com/embed/HhesaQXLuRY",
-        "description": "Nachdem er von seiner lebensbedrohlichen Lungenkrebserkrankung erfahren hat, begleitet der Chemielehrer Walter White seinen Schwippschwager Hank, der bei der DEA arbeitet, zu einem Einsatz, bei dem ein Methamphetamin-Labor ausgehoben wird. Dabei sieht er seinen Ex-Schüler Jesse Pinkman, der vom Tatort flieht. Walter sucht ihn später auf und zwingt Jesse, sein Partner bei der Meth-Produktion zu werden. Jesse soll vor allem die von Walter hergestellte erstklassige Droge verkaufen. Mit dem Erlös will dieser seine von der Krankenkasse nicht finanzierte, teure Behandlung bezahlen und eine Rücklage für die Familie bilden, falls er nicht überleben sollte. Jesse ist beeindruckt von der Qualität des Produkts und vermittelt später durch seinen Freund Skinny Pete den Kontakt zum lokalen Drogenboss Tuco Salamanca, der die beiden durch seine extreme Impulskontrollstörung und durch sein psychopathisches Verhalten vor Herausforderungen stellt.",
-        "score": {
-          "aesthetics": 8,
-          "plot": 10,
-          "characters": 10
-        }
+          "series": 5,
+          "episodes": 62,
+          "name": "Breaking Bad",
+          "imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Breaking_Bad_logo.svg/280px-Breaking_Bad_logo.svg.png",
+          "embeddedTrailerURL": "https://www.youtube.com/embed/HhesaQXLuRY",
+          "description": "Nachdem er von seiner lebensbedrohlichen Lungenkrebserkrankung erfahren hat, begleitet der Chemielehrer Walter White seinen Schwippschwager Hank, der bei der DEA arbeitet, zu einem Einsatz, bei dem ein Methamphetamin-Labor ausgehoben wird. Dabei sieht er seinen Ex-Schüler Jesse Pinkman, der vom Tatort flieht. Walter sucht ihn später auf und zwingt Jesse, sein Partner bei der Meth-Produktion zu werden. Jesse soll vor allem die von Walter hergestellte erstklassige Droge verkaufen. Mit dem Erlös will dieser seine von der Krankenkasse nicht finanzierte, teure Behandlung bezahlen und eine Rücklage für die Familie bilden, falls er nicht überleben sollte. Jesse ist beeindruckt von der Qualität des Produkts und vermittelt später durch seinen Freund Skinny Pete den Kontakt zum lokalen Drogenboss Tuco Salamanca, der die beiden durch seine extreme Impulskontrollstörung und durch sein psychopathisches Verhalten vor Herausforderungen stellt.",
+          "score": {
+              "aesthetics": 8,
+              "plot": 10,
+              "characters": 10
+          }
       },
       "haus-des-geldes": {
-        "name": "Haus des Geldes",
-        "embeddedTrailerURL": "https://www.youtube.com/embed/y-97w1X1IH0",
-        "description": "Ein mysteriöser Mann, der sich selbst nur als Professor bezeichnet, organisiert mit Hilfe von acht Spezialisten den größten Raubüberfall in der Geschichte Spaniens. Gemeinsam wollen sie die Fábrica Nacional de Moneda y Timbre, die Banknotendruckerei Spaniens, infiltrieren, um sich somit selbst Geldscheine zu drucken. Um ihre Identität zu schützen und persönliche Bindungen zu vermeiden, benennen sich die acht anderen Verbrecher nach Großstädten: Tokio, Berlin, Rio, Helsinki, Oslo, Moskau, Denver und Nairobi; im Verlauf der Serie werden einige reale Namen bekannt. Das Ziel ist es, mit insgesamt 2,4 Milliarden Euro den Raub abzuschließen. Dazu brauchen sie elf Tage Zugriff auf die Gelddrucker, und das erfordert einen ausgeklügelten Plan, um die Spezialkräfte der spanischen Polizei hinters Licht zu führen.",
-        "score": {
-          "aesthetics": 8,
-          "plot": 5,
-          "characters": 6
-        }
+          "series": 3,
+          "episodes": 41,
+          "name": "Haus des Geldes",
+          "imageURL": "https://633987.smushcdn.com/907311/wp-content/uploads/2019/07/13MH-1300x731.jpeg?lossy=1&strip=1&webp=1",
+          "embeddedTrailerURL": "https://www.youtube.com/embed/y-97w1X1IH0",
+          "description": "Ein mysteriöser Mann, der sich selbst nur als Professor bezeichnet, organisiert mit Hilfe von acht Spezialisten den größten Raubüberfall in der Geschichte Spaniens. Gemeinsam wollen sie die Fábrica Nacional de Moneda y Timbre, die Banknotendruckerei Spaniens, infiltrieren, um sich somit selbst Geldscheine zu drucken. Um ihre Identität zu schützen und persönliche Bindungen zu vermeiden, benennen sich die acht anderen Verbrecher nach Großstädten: Tokio, Berlin, Rio, Helsinki, Oslo, Moskau, Denver und Nairobi; im Verlauf der Serie werden einige reale Namen bekannt. Das Ziel ist es, mit insgesamt 2,4 Milliarden Euro den Raub abzuschließen. Dazu brauchen sie elf Tage Zugriff auf die Gelddrucker, und das erfordert einen ausgeklügelten Plan, um die Spezialkräfte der spanischen Polizei hinters Licht zu führen.",
+          "score": {
+              "aesthetics": 8,
+              "plot": 5,
+              "characters": 6
+          }
       },
       "mandalorian": {
-        "name": "The Mandalorian",
-        "embeddedTrailerURL": "https://www.youtube.com/embed/srAXcBP_u8w",
-        "description": "Der mandalorianische Protagonist ist ein Einzelkämpfer, der fünf Jahre nach dem Untergang des Imperiums sein Geld als Kopfgeldjäger verdient. Durch das Aufspüren und In-Gewahrsam-Nehmen von Flüchtigen hat er sich in der Gilde der Kopfgeldjäger einen Namen gemacht. Von einem imperialen Auftraggeber erhält er die Aufgabe, einen Fünfzigjährigen aufzuspüren. Der Mandalorianer stellt fest, dass dieser Fünfzigjährige ein Findelkind und von weit größerer Bedeutung ist, als zunächst vermutet. Das Kind ist von derselben Spezies wie der frühere Jedi-Meister Yoda und trägt den Namen Grogu. Entgegen den Regeln der Kopfgeldjäger-Gilde entschließt er sich, Grogu dem Auftraggeber wieder abzunehmen und ihn stattdessen zu beschützen, wodurch er selbst zur Zielscheibe der übrigen Kopfgeldjäger wird. Der Mandalorianer schlägt sich in der Folge mit Auftragsjobs quer durch die Galaxis und muss dabei stets auf Grogu achten, was ihn zwingt, immer auf der Hut zu sein und niemandem zu trauen.",
-        "score": {
-          "aesthetics": 10,
-          "plot": 9,
-          "characters": 9
-        }
+          "series": 2,
+          "episodes": 16,
+          "name": "The Mandalorian",
+          "imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/The_Mandalorian_black_background.svg/500px-The_Mandalorian_black_background.svg.png",
+          "embeddedTrailerURL": "https://www.youtube.com/embed/srAXcBP_u8w",
+          "description": "Der mandalorianische Protagonist ist ein Einzelkämpfer, der fünf Jahre nach dem Untergang des Imperiums sein Geld als Kopfgeldjäger verdient. Durch das Aufspüren und In-Gewahrsam-Nehmen von Flüchtigen hat er sich in der Gilde der Kopfgeldjäger einen Namen gemacht. Von einem imperialen Auftraggeber erhält er die Aufgabe, einen Fünfzigjährigen aufzuspüren. Der Mandalorianer stellt fest, dass dieser Fünfzigjährige ein Findelkind und von weit größerer Bedeutung ist, als zunächst vermutet. Das Kind ist von derselben Spezies wie der frühere Jedi-Meister Yoda und trägt den Namen Grogu. Entgegen den Regeln der Kopfgeldjäger-Gilde entschließt er sich, Grogu dem Auftraggeber wieder abzunehmen und ihn stattdessen zu beschützen, wodurch er selbst zur Zielscheibe der übrigen Kopfgeldjäger wird. Der Mandalorianer schlägt sich in der Folge mit Auftragsjobs quer durch die Galaxis und muss dabei stets auf Grogu achten, was ihn zwingt, immer auf der Hut zu sein und niemandem zu trauen.",
+          "score": {
+              "aesthetics": 10,
+              "plot": 9,
+              "characters": 9
+          }
       }
-    },
-    "score": {
-      "max": 10,
-      "maxTotal": 30
-    }
   }
 }

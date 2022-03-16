@@ -9,11 +9,12 @@
     "express": "^4.17.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "pug": "^3.0.2"
   },
   "scripts": {
-    "dev": "nodemon start --exec 'npm run build && npm run serve' -e js,json,html",
-    "build": "node ./staticSiteGenerator.js",
+    "dev": "nodemon start --exec \"npm run build && npm run serve\" -e js,json,html",
+    "build": "node ./generateStatic.js",
     "serve": "node ./index.js",
     "docker": "docker rm -f series_catalog &2>/dev/null && docker build --no-cache . -t series_catalog && docker run -p 8080:8080 --name series_catalog series_catalog",
     "docker-dev": "docker rm -f series_catalog &2>/dev/null && docker build --no-cache . -t series_catalog -f dev.Dockerfile && docker run -v $(pwd)/:/app/ -p 8080:8080 --name series_catalog series_catalog",
