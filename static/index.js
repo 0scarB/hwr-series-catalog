@@ -81,13 +81,7 @@ function initializeFavoriteBtn(favorites, seriesId) {
 function initializeComments(seriesId) {
     const commentsEl = document.getElementById("comments");
 
-    // Do request to get comments
-    // response.data.filter(responseComment => responseComment.seriesId === seriesId);
-    const comments = [
-        {userId: 'Nutzer1', content: "toll"},
-        {userId: 'Nutzer1', content: "totally not a scam"},
-    ]
-    for (const comment of comments) {
+    const addComment = (comment) => {
         const commentEl = document.createElement('div');
         const userIdEl = document.createElement('div');
         userIdEl.innerText = comment.userId;
@@ -101,10 +95,31 @@ function initializeComments(seriesId) {
         commentsEl.appendChild(commentEl);
     }
 
-    const handleNewComment = () => {
+    const handleNewComment = (e) => {
+        e.preventDefault();
+
         const newCommentEl = document.getElementById("new-comment");
-        axios.post("/comments", {seriesId, content: newCommentEl.innerText});
+        const comment = {seriesId: seriesId, content: newCommentEl.value};
+
+        axios.post(
+            "/comments", 
+            {seriesId: seriesId, content: newCommentEl.value}
+        ).then((res) => {
+            addComment(res.data);
+        });
     }
+
+    axios.get("/comments").then((res) => {
+        const comments = res.data;
+
+        for (const comment of comments) {
+            if (comment.seriesId !== seriesId) {
+                continue;
+            }
+    
+            addComment(comment);
+        }
+    });
 
     document.getElementById("new-comment-form").onsubmit = handleNewComment;
 }

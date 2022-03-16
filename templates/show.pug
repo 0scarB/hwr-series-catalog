@@ -9,7 +9,7 @@ head
   // External packages
   script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js')
   script(src='/index.js')
-body(onload='onLoadSeriesPage()')
+body(onload=`onLoadSeriesPage('${id}')`)
   main
     iframe.trailer(src=`${embeddedTrailerURL}`)
     h1.title #{name}

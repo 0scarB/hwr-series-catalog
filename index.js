@@ -6,6 +6,8 @@ const { HttpConvertibleError } = require("./errors");
 const { PublicStore, UserStore } = require("./store");
 
 const app = express();
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -69,12 +71,16 @@ app.get("/series", handleErrors((req, res) => {
 
 app.get("/comments", (_, res) => {
     res.json(PublicStore.comments);
-    console.log(PublicStore.comments);
 })
 
-app.post("/comments", (req, _) => {
-    PublicStore.comments.push(req.json());
-    console.log(PublicStore.comments);
+app.post("/comments", (req, res) => {
+    const newComment = {
+        ...req.body,
+        userId: req.cookies.userId,
+    }
+    PublicStore.comments.push(newComment);
+
+    res.json(newComment);
 })
 
 // ===========================================================================
