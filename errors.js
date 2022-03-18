@@ -1,3 +1,5 @@
+// Arbeit von Oscar
+// ----------------
 class HttpConvertibleError extends Error {
 
     constructor(msg, statusCode) {
@@ -12,10 +14,6 @@ class NotFoundError extends HttpConvertibleError {
     constructor(msg) { super(msg, 404); }
 }
 
-class NotAcceptableError extends HttpConvertibleError {
-    constructor(msg) { super(msg, 406); }
-}
-
 class ConflictError extends HttpConvertibleError {
     constructor(msg) { super(msg, 409); }
 }
@@ -23,6 +21,5 @@ class ConflictError extends HttpConvertibleError {
 module.exports = {
     HttpConvertibleError,
     NotFoundError,
-    NotAcceptableError,
     ConflictError,
 };

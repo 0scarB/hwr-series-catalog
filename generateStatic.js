@@ -1,3 +1,5 @@
+// Arbeit von Oscar
+// ----------------
 const fs = require("fs");
 const pug = require("pug");
 

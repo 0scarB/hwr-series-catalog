@@ -1,4 +1,8 @@
+/* Arbeit von Sven */
+/* --------------- */
 body {
+    padding: 0;
+    margin: 0;
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
     display: flex;
     flex-direction: column;
@@ -6,9 +10,28 @@ body {
     column-gap:  50px;
 }
 
-a {
+main {
+    padding: 16px;
+}
+
+.PreviewCard {
+    margin-bottom: 16px;
+    padding: 16px;
+    box-shadow: 0 0 5px #aaa;
+}
+
+.PreviewCard:hover {
+    transform: scale(1.01);
+}
+
+.PreviewCard--Row {
     display: flex;
     flex-wrap: wrap;
+    line-height: 32px;
+}
+
+.PreviewCard--Btn {
+    margin-top: 16px;
 }
 
 img {

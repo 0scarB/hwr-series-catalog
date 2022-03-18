@@ -1,52 +1,70 @@
+// Arbeit von Sven
+// ---------------
+const SHOW_TOP_N_MOST_VISITED = 3
+
+let store;  // See store.js
+
+function loadStore() {
+    return axios.get("/state").then((res) => {
+        store = res.data;
+    });
+}
+
 function onLoadHomePage() {
-    Promise.all([
-        handleRequestErrors(axios.get("/series"), {
-            stderr: (err) => `Series could not be retrieved: ${err}`,
-            userAlert: "Daten zu ihre Favoriten konnten nicht geladen werden.",
-        }).then(res => res.data),
-        handleRequestErrors(axios.get("/favorites"), {
-            stderr: (err) => `Favorites could not be found: ${err}`,
-            userAlert: "Ihre Favoriten konnten nicht geladen werden.",
-            statusCode: 404,
-        }).then(res => new Set(res.data)),
-    ]).then(([series, favorites]) => {
-        console.log(series, favorites);
-        series.map((seriesId) => {
-            initializeFavoriteBtn(favorites, seriesId);
-            console.log(seriesId);
+    loadStore().then(() => {
+        initializeMostVisited();
+        initializeFavoritesBtns();
+    });
+}
+
+
+// Arbeit von Oscar
+// ----------------
+function initializeFavoritesBtns() {
+    for (const showId of Object.keys(store.comments)) {
+        initializeShowFavoriteBtns(showId);
+    }
+}
+
+function onLoadSeriesPage(showId) {
+    loadStore().then(() => {
+        handleRequestErrors(axios.put("/state", {
+            ...store,
+            visits: {
+                ...store.visits,
+                [store.userId]: {
+                    ...store.visits[store.userId],
+                    [showId]: store.visits[store.userId][showId] + 1,
+                }
+            }
+        }).then(() => {
+            store.visits[store.userId][showId]++;
+
+            initializeShowFavoriteBtns(showId);
+            initializeComments(showId);
+        }), {
+            stderr: (err) => `Failed to increment visits for series id "${showId}": ${err}`,
         });
-    });
+    })
 }
 
-function onLoadSeriesPage(seriesId) {
-    initializeComments(seriesId);
-
-    handleRequestErrors(axios.put(`/visit/${seriesId}`), {
-        stderr: (err) => `Failed to increment visits for series id "${seriesId}": ${err}`,
-    });
-
-    handleRequestErrors(axios.get("/favorites").then((res) => {
-        const favorites = new Set(res.data);
-
-        initializeFavoriteBtn(favorites, seriesId);
-    }), {
-        stderr: (err) => `Favorites could not be found: ${err}`,
-        userAlert: "Es konnte nicht ermittelt werden, ob die Serie als Favorit markiert wurde.",
-        statusCode: 404,
-    });
-}
-
-function initializeFavoriteBtn(favorites, seriesId) {
-    const isFavorite = () => favorites.has(seriesId);
-
-    const btnEl = document.getElementById(
-        `toggle-favorite-btn-${seriesId}`
-    ) || document.getElementById(
-        `toggle-favorite-btn-${seriesId}2`
+function initializeShowFavoriteBtns(showId) {
+    const btnEls = document.getElementsByClassName(
+        `toggle-favorite-btn-${showId}`
     );
 
+    for (const btnEl of btnEls) {
+        initializeFavoriteBtn(showId, btnEls, btnEl);
+    }
+}
+
+function initializeFavoriteBtn(showId, btnEls, btnEl) {
+    const isFavorite = () => store.favorites[store.userId].indexOf(showId) !== -1;
+
     const updateBtnText = () => {
-        btnEl.innerHTML = `Favorit ${isFavorite() ? "entfernen" : "hinzufügen"}`;
+        for (const el of btnEls) {
+            el.innerHTML = `Favorit ${isFavorite() ? "entfernen" : "hinzufügen"}`;
+        }
     };
 
     updateBtnText();
@@ -59,35 +77,67 @@ function initializeFavoriteBtn(favorites, seriesId) {
 
         window.addEventListener("pageshow", removeEventListenerOnPageHide);
 
-        const requestHandler = isFavorite() ? axios.delete : axios.post;
+        let newFavorites;
+        if (isFavorite()) {
+            newFavorites = store.favorites[store.userId].filter(
+                (favShowId) => favShowId !== showId,
+            );
+        } else {
+            newFavorites = [...store.favorites[store.userId], showId];
+        }
 
-        handleRequestErrors(requestHandler(`/favorites/${seriesId}`).then(() => {
-            if (isFavorite()) {
-                favorites.delete(seriesId);
-            } else {
-                favorites.add(seriesId);
+        handleRequestErrors(axios.put("/state", {
+            ...store,
+            favorites: {
+                ...store.favorites,
+                [store.userId]: newFavorites,
             }
+        }), {
+            stderr: (err) => `Favorite could not be toggled for series id "${showId}": ${err}`,
+            userAlert: `Die Serie konnte nicht als Favorit ${isFavorite ? "entfernt" : "hinzugefügt"} werden.`,
+        }).then(() => {
+            store.favorites[store.userId] = newFavorites;
 
             updateBtnText();
-        }), {
-            stderr: (err) => `Favorite could not be toggled for series id "${seriesId}": ${err}`,
-            userAlert: `Die Serie konnte nicht als Favorit ${isFavorite() ? "entfernt" : "hinzugefügt"} werden.`,
         });
     };
 
     btnEl.addEventListener("click", toggle);
 }
 
-function initializeComments(seriesId) {
+function initializeMostVisited() {
+    const mostVisitedEl = document.getElementById("most-visited");
+
+    mostVisitedEl.innerHTML = "";
+
+    const mostVisitedShowIds = Object.entries(store.visits[store.userId])
+        .filter(([_, visits]) => visits > 0)
+        .sort(([_, visits1], [__, visits2]) => visits2 - visits1)
+        .map(([showId, _]) => showId).slice(0, SHOW_TOP_N_MOST_VISITED);
+
+    for (const showId of mostVisitedShowIds) {
+        const showPreviewCardEl = document.getElementById(`preview-card-${showId}`);
+
+        mostVisitedEl.innerHTML += showPreviewCardEl.outerHTML;
+    }
+}
+
+// Arbeit von Sven
+// ---------------
+function initializeComments(showId) {
     const commentsEl = document.getElementById("comments");
 
     const addComment = (comment) => {
         const commentEl = document.createElement('div');
+        commentEl.classList.add("Comments__Old__Comment");
+
         const userIdEl = document.createElement('div');
         userIdEl.innerText = comment.userId;
+        userIdEl.classList.add("Comments__Old__Comment__Name");
+
         const commentContentEl = document.createElement('div');
-        // commentContentEl.innerText = comment.content;
-        commentContentEl.innerHTML = `<strong>${comment.content}</strong>`
+        commentContentEl.innerText = comment.content
+        commentContentEl.classList.add("Comments__Old__Comment__Content");
 
         commentEl.appendChild(userIdEl);
         commentEl.appendChild(commentContentEl);
@@ -99,27 +149,30 @@ function initializeComments(seriesId) {
         e.preventDefault();
 
         const newCommentEl = document.getElementById("new-comment");
-        const comment = {seriesId: seriesId, content: newCommentEl.value};
+        const comment = {userId: store.userId, content: newCommentEl.value};
 
-        axios.post(
-            "/comments", 
-            {seriesId: seriesId, content: newCommentEl.value}
-        ).then((res) => {
-            addComment(res.data);
+        axios.put(
+            "/state", 
+            {
+                ...store,
+                comments: {
+                    ...store.comments,
+                    [showId]: [
+                        ...store.comments[showId],
+                        comment,
+                    ]
+                }
+            }
+        ).then(() => {
+            store.comments[showId] = [...store.comments[showId], comment];
+
+            addComment(comment);
         });
     }
 
-    axios.get("/comments").then((res) => {
-        const comments = res.data;
-
-        for (const comment of comments) {
-            if (comment.seriesId !== seriesId) {
-                continue;
-            }
-    
-            addComment(comment);
-        }
-    });
+    for (const comment of store.comments[showId]) {
+        addComment(comment);
+    }
 
     document.getElementById("new-comment-form").onsubmit = handleNewComment;
 }

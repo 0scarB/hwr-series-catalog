@@ -1,3 +1,5 @@
+/* Arbeit von Oscar */
+/* ---------------- */
 body {
     margin: 0;
     padding: 0;
@@ -12,7 +14,7 @@ main {
     grid-gap: 24px;
 }
 
-.trailer {
+.Trailer {
     margin: 0;
     padding: 0;
     grid-column: 1 / 7;
@@ -20,61 +22,106 @@ main {
     min-height: 50vw;
 }
 
-.title {
+.Tile {
     margin: 0;
     padding: 0;
     grid-column: 1 / 7;
 }
 
-.description {
+.Description {
     margin: 0;
     padding: 0;
     grid-column: 1 / 7;
 }
 
-.scores {
+.Scores {
     margin: 0;
     padding: 0;
     grid-column: 1 / 7;
 }
 
-.scores > tbody > tr > th {
+.Scores > tbody > tr > th {
     padding: 8px;
 }
 
-.scores > tbody > tr > td {
+.Scores > tbody > tr > td {
     padding: 8px;
 }
 
-.scores > tbody > tr:nth-child(even) {
+.Scores > tbody > tr:nth-child(even) {
     background-color: #ddd;
 }
 
-.scores > tbody > tr:nth-child(odd) {
+.Scores > tbody > tr:nth-child(odd) {
     background-color: #eee;
 }
 
+.FavoriteBtn {
+    grid-column: 1 / 2;
+}
+
+.Comments {
+    grid-column: 1 / 7;
+    margin-top: 16px;
+}
+
+.Comments__New__Textarea {
+    display: block;
+    width: 50%;
+    height: 100px;
+    grid-column: 1 / 7;
+    margin-bottom: 16px;
+    white-space: normal !important;
+}
+
+.Comments__New__Btn {
+    display: block;
+    grid-column: 1 / 2;
+}
+
+.Comments__New {
+    margin-top: 16px;
+}
+
+.Comments__Old {
+    margin-top: 16px;
+}
+
+.Comments__Old__Comment {
+    margin: 8px 0;
+    border-bottom: 1px solid #aaa;
+}
+
+.Comments__Old__Comment__Name {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.Comments__Old__Comment__Content {
+    margin-bottom: 8px;
+}
+
 @media screen and (min-width: 600px) {
-    .scores {
-        grid-column: 2 / 6;
+    .Scores {
+        grid-column: 1 / 7;
     }
 }
 
 @media screen and (min-width: 850px) {
-    .trailer {
+    .Trailer {
         grid-area: 1 / 1 / span 1 / span 4;
         min-height: 300px;
     }
 
-    .title {
+    .Title {
         grid-area: 2 / 1 / span 1 / span 4;
     }
 
-    .description {
+    .Description {
         grid-area: 3 / 1 / span 1 / span 4;
     }
 
-    .scores {
+    .Scores {
         grid-area: 1 / 5 / span 3 / span 2;
         align-self: center;
         height: 300px;

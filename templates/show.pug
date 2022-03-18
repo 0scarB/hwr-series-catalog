@@ -1,3 +1,5 @@
+// Arbeit von Oscar
+// ----------------
 doctype html
 head
   meta(charset='UTF-8')
@@ -11,12 +13,11 @@ head
   script(src='/index.js')
 body(onload=`onLoadSeriesPage('${id}')`)
   main
-    iframe.trailer(src=`${embeddedTrailerURL}`)
-    h1.title #{name}
-    .description
+    iframe.Trailer(src=`${embeddedTrailerURL}`)
+    h1.Title #{name}
+    .Description
       | #{description}
-    button(id=`toggle-favorite-btn-${id}`) Favorit ...
-    table#ratingTable.scores
+    table#ratingTable.Scores
       tr
         th Kriterium
         th Bewertung
@@ -32,8 +33,9 @@ body(onload=`onLoadSeriesPage('${id}')`)
       tr
         td Gesamtbewertung
         td #{score.total}/#{score.maxTotal}
-    form(id='new-comment-form')
-      label(for='new-comment') Neue Kommentar hinterlassen
-      input(id='new-comment', type='textarea')
-      input(type='submit')
-    div(id='comments')
+    button(class=`toggle-favorite-btn-${id}`).FavoriteBtn Favorit ...
+    div.Comments
+      form(id='new-comment-form').Comments__New
+        textarea(id='new-comment', type='textarea', cols="30", rows="10").Comments__New__Textarea
+        input(type='submit', value="Kommentar hinterlassen").Comments__New__Btn
+      div(id='comments').Comments__Old

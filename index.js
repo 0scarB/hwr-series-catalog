@@ -1,9 +1,11 @@
+// Arbeit von Sven
+// ---------------
 const express = require("express");
 const bodyParser = require('body-parser');
 const cookieParser = require("cookie-parser");
 
 const { HttpConvertibleError } = require("./errors");
-const { PublicStore, UserStore } = require("./store");
+const store = require("./store");
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -16,74 +18,49 @@ app.use(cookieParser());
 
 app.use(express.static("./static"));
 
+
+// Arbeit von Oscar
+// ----------------
+
 // Middleware
 // ===========================================================================
 
 // `userId` cookie
 app.use((req, res, next) => {
     if (typeof req.cookies.userId === "undefined") {
-        const userId = UserStore.initializeNewUser();
+        const userId = store.addUser();
 
         req.cookies.userId = userId;
-        res.cookie("userId", UserStore.initializeNewUser());
+        res.cookie("userId", userId);
+    } else if (typeof store.favorites[req.cookies.userId] === "undefined") {
+        store.addUser(req.cookies.userId);
     }
 
     next();
 });
 
+// Arbeit von Sven
+// ---------------
+
 // API
 // ===========================================================================
 
-app.get("/favorites", handleErrors((req, res) => {
-    res.send(UserStore.getFavorites(req.cookies.userId));
-}));
-
-app.get("/favorites/:seriesId", handleErrors((req, res) => {
-    res.send(UserStore.isFavorite(req.cookies.userId, req.params.seriesId));
-}));
-
-app.post("/favorites/:seriesId", (req, res) => {
-    UserStore.addFavorite(req.cookies.userId, req.params.seriesId);
-    res.send();
-});
-
-app.delete("/favorites/:seriesId", (req, res) => {
-    UserStore.removeFavorite(req.cookies.userId, req.params.seriesId);
-    res.send();
-});
-
-app.put("/visit/:seriesId", handleErrors((req, _) => {
-    UserStore.visitSeries(req.cookies.userId, req.params.seriesId);
-    res.send();
-}));
-
-app.get("/series", handleErrors((req, res) => {
-    let getter;
-
-    if (req.query.sort === "visits") {
-        getter = UserStore.getMostVisitedSeries;
-    } else {
-        getter = UserStore.getSeries;
-    }
-
-    res.send(getter(req.query.limit));
-}));
-
-app.get("/comments", (_, res) => {
-    res.json(PublicStore.comments);
+// Yes this is inefficient, but it's simple
+// "Premature optimization is the root of all evil" - Donald Knuth
+app.get("/state", (req, res) => {
+    res.json({...store, userId: req.cookies.userId});
 })
 
-app.post("/comments", (req, res) => {
-    const newComment = {
-        ...req.body,
-        userId: req.cookies.userId,
-    }
-    PublicStore.comments.push(newComment);
+app.put("/state", handleErrors((req, res) => {
+    store.update(req.body);
 
-    res.json(newComment);
-})
+    res.send();
+}))
 
 // ===========================================================================
+
+// Arbeit von Oscar
+// ----------------
 
 function handleErrors(decoratedFunc) {
     const wrapper = (req, res) => {

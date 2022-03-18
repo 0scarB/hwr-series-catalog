@@ -1,121 +1,66 @@
+
+// Arbeit von Sven
+// ---------------
 const fs = require("fs");
 
 const { NotFoundError, ConflictError, NotAcceptableError } = require("./errors");
 
-const _data = JSON.parse(fs.readFileSync("./data.json"));
-const _seriesIdsFromDataArr = Object.keys(_data.shows);
-const _seriesIdsFromData = new Set(_seriesIdsFromDataArr);
+const data = JSON.parse(fs.readFileSync("./data.json"));
+const showIds = Object.keys(data.shows);
+let userCount = 0;
 
-const PublicStore = {
-    comments: [
-        // {commentId: 0, seriesId: "arcane", userId: "", content: ""}
-    ]
-}
-
-class _UserStore {
+class Store {
+    comments = {};   // { [showId: string]: { userId: string, content: string }[] }
+    favorites = {};  // { [userId: string]: string[] } where Set<string> is a set of showIds
+    visits = {};     // { [userId: string]: { [showId: string]: int } }
 
     constructor() {
-        this.store = new Map();
+        for (const showId of showIds) {
+            this.comments[showId] = [];
+        }
     }
 
-    initializeNewUser() {
-        const userId = `Nutzer${this.store.size + 1}`;
+    update(newStore) {
+        validateNewStore(this, newStore)
 
-        this.store.set(userId, {favorites: new Set(), visits: new Map()});
+        this.comments = newStore.comments;
+        this.favorites = newStore.favorites;
+        this.visits = newStore.visits;
+    }
+
+    addUser(id = undefined) {
+        const userId = id || `Nutzer${userCount + 1}`;
+
+        this.favorites[userId] = [];
+
+        const visits = {}
+        for (const showId of showIds) {
+            visits[showId] = 0;
+        }
+        this.visits[userId] = visits;
+
+        userCount++;
 
         return userId;
     }
-
-    addFavorite(userId, seriesId) {
-        const favorites = this._getUserData(userId).favorites;
-
-        if (favorites.has(seriesId)) {
-            throw new ConflictError(`User with id "${userId}" already has favorite "${seriesId}"`);
-        }
-
-        this._getUserData(userId).favorites.add(seriesId);
-    }
-
-    removeFavorite(userId, seriesId) {
-        checkSeries(seriesId);
-
-        const favorites = this._getUserData(userId).favorites;
-
-        if (!favorites.has(seriesId)) {
-            throw new ConflictError(
-                `User with id "${userId}" cannot remove favorite "${seriesId}" that is not listed in their favorites`
-            );
-        }
-
-        favorites.delete(seriesId);
-    }
-
-    isFavorite(userId, seriesId) {
-        checkSeries(seriesId);
-
-        return this._getUserData(userId).favorites.has(seriesId);
-    }
-
-    getFavorites(userId) {
-        return Array.from(this._getUserData(userId).favorites);
-    }
-
-    visitSeries(userId, seriesId) {
-        checkSeries(seriesId);
-
-        const visits = this._getUserData(userId).visits;
-
-        visits.set(seriesId, (visits.get(seriesId) || 0) + 1);
-    }
-
-    getSeries(userId, limit=1000) {
-        checkUser(userId);
-
-        const max = Math.min(limit, _seriesIdsFromDataArr.length);
-        return _seriesIdsFromDataArr.slice(0, max);   
-    }
-
-    *getMostVisitedSeries(userId, limit=1000) {
-        checkUser(userId);
-
-        const sortedVisits = this._getUserData(userId).visits.entries().sort(
-            ([_, seriesVisits1], [__, seriesVisits2]) => seriesVisits1 - seriesVisits2 
-        );
-        
-        const count = 0;
-        const max = Math.min(limit, visits.size());
-        for (const [seriesId, seriesVisits] of sortedVisits) {
-            if (count >= max) {
-                return;
-            }
-
-            yield seriesId;
-        }
-    }
-
-    _getUserData(userId) {
-        checkUser(userId);
-
-        return this.store.get(userId);
-    }
 }
 
-const UserStore = new _UserStore();
-
-function checkUser(userId) {
-    if (!UserStore.store.has(userId)) {
-        throw new NotFoundError(`No user with id "${userId}"`);
-    }
+function validateNewStore(oldStore, newStore) {
+    validateNewComments(oldStore.comments, newStore.comments);
+    validateNewFavorites(oldStore.favorites, newStore.favorites);
+    validateNewVisits(oldStore.visits, newStore.visits);
 }
 
-
-function checkSeries(seriesId) {
-    if (!_seriesIdsFromData.has(seriesId)) {
-        throw new NotAcceptableError(`Series with id "${seriesId}" not in catalog`);
-    }
+function validateNewComments(oldComments, newComments) {
+    // TBD
 }
 
-module.exports = {
-    PublicStore,
-    UserStore,
+function validateNewFavorites(oldFavorites, newFavorites) {
+    // TBD
 }
+
+function validateNewVisits(oldVisits, newVisits) {
+    // TBD
+}
+
+module.exports = new Store();

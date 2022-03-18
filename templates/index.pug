@@ -8,26 +8,32 @@ head
     // External packages
     script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js')
     script(src='/index.js')
-body(onload='onLoadHomePage()')
-    form#searchbar
-        label(for='search') Suchen: 
-        input#search(type='text')
-        input(type='submit')
-    h1 Serien Katalog
-    div
-        each show, showId in shows
-            a(id=`${showId}` href=`serien/${showId}.html`)
-                img(src=`${show.imageURL}`)
-                h3 #{show.name}
-                ul
-                    li
-                    span Staffel 
-                    span #{show.series}
-                    li
-                    span Folgen 
-                    span #{show.episodes}
-                    li
-                    span Bewertung 
-                    span #{show.score.avgRounded}/10
-            button(id=`toggle-favorite-btn-${showId}2`) Favorit ...
-    script(src='/index.js')
+body(onload='onLoadHomePage()' onpageshow='onLoadHomePage()')
+    main
+        form#searchbar
+            label(for='search') Suchen: 
+            input#search(type='text')
+            input(type='submit')
+        h1 Serien Katalog
+        h2 Meist Besucht (Top 3)
+        div(id='most-visited')
+        h2 Serien
+        div
+            each show, showId in shows
+                div(id=`preview-card-${showId}`).PreviewCard
+                    a(href=`serien/${showId}.html`)
+                        h3 #{show.name}
+                        div.PreviewCard__Row
+                            img(src=`${show.imageURL}`)
+                            ul
+                                li
+                                    span Staffel 
+                                    span #{show.series}
+                                li
+                                    span Folgen 
+                                    span #{show.episodes}
+                                li
+                                    span Bewertung 
+                                    span #{show.score.avgRounded}/10
+                    button(class=`toggle-favorite-btn-${showId}`).PreviewCard__Btn Favorit ...
+        script(src='/index.js')
